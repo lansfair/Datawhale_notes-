@@ -1,27 +1,9 @@
-# Task02 决策树（下）
-## 1.CART代码实现
-本次课程讲解了分类回归决策树（CART算法）的回归简单实现，加深了我对决策树理论和实现的理解。
-代码主要使用python中的numpy库实现。要实现决策树，首先需要定义一个决策树类DecisionTreeRegressor，其基于类Tree，简单类比skearn，需要实现fit（训练）和predict（预测）两个方法。
-
-- fit方法须传入feature：X和label：y，然后基于tree中的build方法构建决策树，再计算并保存每个feature的重要性。
-重难点在于build方法的实现，在build方法中，
-    - 1.首先定义build_prepare()方法，构建出初始状态，包括初始化depth为0，feature_importances_为0（长度为feature的数目），以及根节点root，root基于Node类，Node类属性包括当前depth，归属当前节点的样本编码idx（一个长为样本数量的样本，归属当前的样本对应位置为1，不属于则为0），以及左子节点left，右子节点right，当前分割特征feature，分割节点pivot
-    - 2.定义build_node()方法，采用深度优先生长方法构建决策树叶子节点，直到达到最高深度或者当前节点样本数少于2或者某个子节点分配不到样本为止，到此训练完成。
-首先定义_able_to_split()方法判断当前节点是否符合分裂节点的条件
-	    - 主要重难点在于如何分裂节点。定义split()方法分裂节点，基于均方误差计算H(Y)以及通过_get_conditional_entropy方法计算最小的H(Y|X)（返回H(Y|X)值，左子节点idx，右子节点idx，所选特征，分裂点）(_inner_split()方法使用最佳分割点，循环计算以每个样本点为分割点的H(Y|X)，返回当前循环特征的最小值)，从而计算出信息增益，再计算出相对信息增益并更新特征重要性，再新建左右节点并更新深度，返回值为（左子节点idx，右子节点idx，所选特征，分裂点）。
-
-- predict 方法实现较为简单，根据生成的决策树递归判断所预测的数据的所属节点，直至达到最下层节点为止，取当前节点所述样本的平均值作为回归预测值，预测完成。
-
-- CART决策树回归应用具体实现代码如下：
-```python
 import numpy as np
-```
-```python
+
+
 def MSE(y):
     return ((y - y.mean())**2).sum() / y.shape[0]
-```
 
-```python 
 class Node:
 
     def __init__(self, depth, idx):
@@ -32,9 +14,8 @@ class Node:
         self.right = None
         self.feature = None
         self.pivot = None
-```
 
-```python
+
 class Tree:
 
     def __init__(self, max_depth):
@@ -131,13 +112,13 @@ class Tree:
 
     def predict(self, x):
         return self._search_prediction(self.root, x)
-```
 
-```python
+
 class DecisionTreeRegressor:
     """
     max_depth控制最大深度，类功能与sklearn默认参数下的功能实现一致
     """
+
     def __init__(self, max_depth):
         self.tree = Tree(max_depth=max_depth)
 
@@ -153,51 +134,3 @@ class DecisionTreeRegressor:
 
     def predict(self, X):
         return np.array([self.tree.predict(x) for x in X])
-```
-## 2.测试实现效果
-- 测试是否与sklearn默认参数下实现的效果相同
-- 注：测试时有时会产生两者结果预测部分不一致的情况，这种现象主要来自于当前节点在分裂的时候不同的特征和分割点组合产生了相同的信息增益，但由于遍历特征的顺序（和sklearn内的遍历顺序）不一样，因此在预测时会产生差异，并不是算法实现上有问题
-```python
-from CART import DecisionTreeRegressor
-from sklearn.tree import DecisionTreeRegressor as dt
-from sklearn.datasets import make_regression
-```
-```python
-if __name__ == "__main__":
-
-    # 模拟回归数据集
-    X, y = make_regression(
-        n_samples=200, n_features=10, n_informative=5, random_state=0
-    )
-
-    my_cart = DecisionTreeRegressor(max_depth=2)
-    my_cart.fit(X, y)
-    res1 = my_cart.predict(X)
-    importance1 = my_cart.feature_importances_
-
-    sklearn_cart = dt(max_depth=2)
-    sklearn_cart.fit(X, y)
-    res2 = sklearn_cart.predict(X)
-    importance2 = sklearn_cart.feature_importances_
-
-    # 预测一致的比例
-    print(((res1-res2)<1e-8).mean())
-    # 特征重要性一致的比例
-    print(((importance1-importance2)<1e-8).mean())
-```
-## 3.修改为解决多分类问题
-- 如果要实现分多分类问题，只需将计算信息增益的指标由均方误差更换为类别特征的基尼系数公式，并对最后预测值取arcmax即可。
-```python
-def Gini(y):
-    gn=1.0
-    n=y.shape[0]
-    for i in np.unique(y):
-        gn=gn-(np.sum(y==i)/n)**2
-    return gn
-```
-
-```python
-def argmax(y):
-    l=sorted([(np.sum(y==i),i) for i in np.unique(y)],reverse=True)
-    return l[0][1]
-```
