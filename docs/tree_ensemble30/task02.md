@@ -197,9 +197,16 @@ def Gini(y):
         gn=gn-(np.sum(y==i)/n)**2
     return gn
 ```
-
+- 对预测值取argmax，而不是像回归问题那样取平均值
 ```python
-def argmax(y):
-    l=sorted([(np.sum(y==i),i) for i in np.unique(y)],reverse=True)
-    return l[0][1]
+    def _search_prediction(self, node, x):
+        if node.left is None and node.right is None:
+            # return argmax(self.y[node.idx])
+            return np.argmax(np.bincount(self.y[node.idx]))
+            # return self.y[node.idx].min()
+        if x[node.feature] <= node.pivot:
+            node = node.left
+        else:
+            node = node.right
+        return self._search_prediction(node, x)
 ```
