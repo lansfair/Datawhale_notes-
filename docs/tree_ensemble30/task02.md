@@ -190,12 +190,30 @@ if __name__ == "__main__":
 ## 3.修改为解决多分类问题
 - 如果要实现分多分类问题，只需将计算信息增益的指标由均方误差更换为类别特征的基尼系数公式，并对最后预测值取arcmax即可。
 ```python
+# 三种实现均可
 def Gini(y):
     gn=1.0
     n=y.shape[0]
     for i in np.unique(y):
         gn=gn-(np.sum(y==i)/n)**2
     return gn
+
+
+def Gini(y):
+    #gini=1-sum(pi**2)
+    count = np.bincount(y)
+    return 1-((count/y.shape[0])**2).sum()
+
+
+def Gini(y):
+  gn=1.0
+  n=y.shape[0]
+  count = np.zeros(max(np.unique(y))+1);
+  for i in np.unique(y):
+      count[i] = np.sum(y==i)
+  gn=gn-((count/n)**2).sum()
+  # print(gn)
+  return gn
 ```
 - 对预测值取argmax，而不是像回归问题那样取平均值
 ```python
