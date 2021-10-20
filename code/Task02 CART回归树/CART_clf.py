@@ -143,25 +143,7 @@ class DecisionTreeClassifier:
         return np.array([self.tree.predict(x) for x in X])
 # import numpy as np
 #
-# # def Gini(y):
-# #     #gini=1-sum(pi**2)
-# #     count = np.bincount(y)
-# #     return 1-((count/y.shape[0])**2).sum()
-# def Gini(y):
-#   gn=1.0
-#   n=y.shape[0]
-#   count = np.zeros(max(np.unique(y))+1);
-#   for i in np.unique(y):
-#       count[i] = np.sum(y==i)
-#   gn=gn-((count/n)**2).sum()
-#   # print(gn)
-#   return gn
-# # def Gini(y):
-# #     gn=1.0
-# #     n=y.shape[0]
-# #     for i in np.unique(y):
-# #         gn=gn-(np.sum(y==i)/n)**2
-# #     return gn
+# #  
 #
 #
 # class Node:
