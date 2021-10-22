@@ -2,7 +2,7 @@
 &emsp;&emsp;记录我参加的Datawhale组队学习，包括笔记和习题解答。
 
 ## 在线阅读地址
-在线阅读地址：https://relph1119.github.io/my-team-learning
+在线阅读地址：https://wangyifan97.github.io/Datawhale_notes-/
 
 ## 项目结构
 <pre>
