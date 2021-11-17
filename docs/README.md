@@ -5,6 +5,12 @@
 在线阅读地址：https://wangyifan97.github.io/Datawhale_notes-/
 
 ## 目录
+- 第31期python办公自动化
+    - Task01 文件自动化处理&邮件批量处理
+    - Task02 python与excel
+    - Task03 python与word
+    - Task04 python与pdf
+    - Task05 爬虫入门与综合应用
 - 第30期树模型与集成学习
     - Task01 决策树（上）
     - Task02 决策树（下）
