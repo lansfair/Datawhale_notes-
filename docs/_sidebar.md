@@ -1,4 +1,10 @@
 * [目录](README.md)
+    * 第31期python办公自动化
+        * [Task01 文件自动化处理&邮件批量处理](OfficeAutomation31/task01.md)
+        * [Task02 python与excel](OfficeAutomation31/task02.md)
+        * [Task03 python与word](OfficeAutomation31/task03.md)
+        * [Task04 python与pdf](OfficeAutomation31/task04.md)
+        * [Task05 爬虫入门与综合应用](OfficeAutomation31/task05.md)
     * 第30期树模型与集成学习
         * [Task01 决策树（上）](tree_ensemble30/task01.md)
         * [Task02 决策树（下）](tree_ensemble30/task02.md)
