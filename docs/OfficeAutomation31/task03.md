@@ -30,7 +30,7 @@ paragraph_3 = doc_1.add_paragraph('这是第二页第一段文字！')
 # 保存文件（当前目录下）
 doc_1.save('doc_1.docx')
 ```
-<img src=".\images\初步认识docx.png">
+![png](.\images\初步认识docx.png)
 
 ## 3.整体结构
 python-docx将整个文章看做是一个**Document**对象 ，其基本结构如下：
@@ -86,7 +86,7 @@ r_1.font.color.rgb =RGBColor(0, 0, 255)      #颜色
 # 保存文件（当前目录下）
 doc_1.save('周杰伦.docx')
 ```
-<img src=".\images\docx整体架构.png">
+![png](.\images\docx整体架构.png)
 
     run设置单个文字块的属性，如字号，颜色等。
     paragraph_format设置段落的格式，如缩进，行间距等。
@@ -251,9 +251,9 @@ from docx.shared import RGBColor,Pt
 ```
 ## 7. 项目实践
 你是公司的行政人员，对合作伙伴进行邀请，参加公司的会议；参会人名单如下：
-<img src=".\images\项目实践01.jpg">
+![png](.\images\项目实践01.jpg)
 拟定的邀请函样式如下：
-<img src=".\images\项目实践02.jpg">
+![png](.\images\项目实践02.jpg)
 根据参会人名单，利用python批量生成邀请函。
 ```python
 from docx import Document
@@ -309,8 +309,8 @@ for row in sheet.iter_rows(min_row=2, max_row=5, min_col=1, max_col=4):
     doc.add_page_break()
 doc.save('邀请函.docx')
 ```
-<img src=".\images\邀请函.png">
+![png](.\images\邀请函.png)
 
 ## 总结
 （摘自优秀笔记 https://www.notion.so/Task03-Python-Word-c5547426f77c4aa7a97e545c80a16f50#d7e615e7ed1e46e58dea46b8db71ece2）
-<img src=".\images\总结.png">
+![png](.\images\总结.png)
