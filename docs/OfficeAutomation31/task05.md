@@ -83,15 +83,18 @@ from bs4 import BeautifulSoup
 #sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030')
 #
 headers ={'user-agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
-
 res = requests.get('https://book.douban.com/top250', headers=headers) 
 soup = BeautifulSoup(res.text, 'lxml')
 print(soup.find('a'))
-#<a class="nav-login" href="https://accounts.douban.com/passport/login?source=book" rel="nofollow">登录/注册</a>
+# <a class="nav-login" 
+# href="https://accounts.douban.com/passport/login?source=book" 
+# rel="nofollow">登录/注册</a>
 print(soup.find_all('a'))
 #返回一个列表 包含了所有的<a>标签
 ```
+
 除了传入 HTML 标签名称外，BeautifulSoup 还支持熟悉的定位
+
 ```python
 # 定位div开头 同时id为'doubanapp-tip的标签
 soup.find('div', id='doubanapp-tip')
