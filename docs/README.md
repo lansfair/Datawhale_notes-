@@ -5,6 +5,8 @@
 在线阅读地址：https://wangyifan97.github.io/Datawhale_notes-/
 
 ## 目录
+- 第32期深度了解计算机系统
+    - Task01 计算机系统漫游
 - 第31期python办公自动化
     - Task01 文件自动化处理&邮件批量处理
     - Task02 python与excel

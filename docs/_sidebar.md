@@ -1,4 +1,6 @@
 * [目录](README.md)
+    * 第32期深度了解计算机系统
+        * [Task01计算机系统漫游](CSAPP31/task01.md)
     * 第31期python办公自动化
         * [Task01 文件自动化处理&邮件批量处理](OfficeAutomation31/task01.md)
         * [Task02 python与excel](OfficeAutomation31/task02.md)
